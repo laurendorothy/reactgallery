@@ -12,10 +12,32 @@ function GenerateImages(imageNumber) {
 }
 
 const Gallery = props => {
+  const [ number, setNumber ] = useState(6);
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+//https://reactjs.org/docs/forms.html
+
   return (
     // add button, input, generate as many images as input
-    <div className="Gallery">
-      {GenerateImages(3)}
+    <div>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          How many images?
+          <input type="number" value={number} onChange={this.handleChange} />
+        </label>
+          <input type="submit" value="Submit" />
+      </form>
+      <div className="Gallery">
+        {GenerateImages({number})}
+      </div>
     </div>
   )
 }
