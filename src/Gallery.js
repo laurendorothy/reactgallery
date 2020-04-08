@@ -2,24 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Image from './Image'
 
-/* https://picsum.photos/200/300 */
-
-
-
-const Gallery = props => {
-  fetch('https://picsum.photos/200/300?random=1')
-    .then(res => res.json())
-    .then(
-
-  return (
-    <div>
-      <Image />
-    </div>
-  )
+/* */
+function GenerateImage(imageNumber) {
+  for (let i = 0; i < imageNumber ; i += 1) {
+    <Image image={`https://picsum.photos/200/300=random${i}`} />
+  }
 }
 
-Gallery.propTypes = {
-
+const Gallery = props => {
+  return (
+    <div>
+      {GenerateImage(3)}
+    </div>
+  )
 }
 
 export default Gallery
