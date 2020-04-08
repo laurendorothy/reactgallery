@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
-import PropTypes from 'prop-types'
 import Image from './Image'
+import {useInput} from './hooks/customHooks.js'
 
-/* */
 function GenerateImages(imageNumber) {
   const images = [];
   for (let i = 0; i < imageNumber ; i += 1) {
@@ -16,16 +15,16 @@ function GenerateImages(imageNumber) {
 //   setNumber(event.target.value);
 // }
 
-function Gallery(props) {
+function Gallery() {
   const [ number, setNumber ] = useState(6);
-  // const [ propNumber, setPropNumber ] = useState(number);
+  const { value, bind, reset } = useInput('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Submitting Number ${number}`)
+    alert(`Submitting Name ${value}`);
   }
 
-//https://reactjs.org/docs/forms.html
+  //https://reactjs.org/docs/forms.html
 
   return (
     // add button, input, generate as many images as input
@@ -34,9 +33,11 @@ function Gallery(props) {
         <label>
           How many images?
           <input 
-            type="number" 
-            value={number} 
-            onChange={(event) => setNumber(event.target.value)} />
+            type="number"
+            {...bind}
+            // value={number} 
+            // onChange={(event) => setNumber(event.target.value)} 
+            />
         </label>
           <input type="submit" value="Submit" />
       </form>
