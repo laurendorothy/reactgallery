@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import Image from './Image'
 
@@ -12,31 +12,36 @@ function GenerateImages(imageNumber) {
 }
 
 
-function handleChange(event, setNumber) {
-  setNumber(event.target.value);
-}
+// function handleChange(event, setNumber) {
+//   setNumber(event.target.value);
+// }
 
-function handleSubmit(event) {
-  alert('A name was submitted: ' + this.state.value);
-  event.preventDefault();
-}
 function Gallery(props) {
   const [ number, setNumber ] = useState(6);
-  const [ propNumber, setPropNumber ] = useState(number)
+  // const [ propNumber, setPropNumber ] = useState(number);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Submitting Number ${number}`)
+  }
 
 //https://reactjs.org/docs/forms.html
 
   return (
     // add button, input, generate as many images as input
     <div>
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>
           How many images?
-          <input type="number" value={number} onChange={(event) => handleChange(event, setNumber)} />
+          <input 
+            type="number" 
+            value={number} 
+            onChange={(event) => setNumber(event.target.value)} />
         </label>
           <input type="submit" value="Submit" />
       </form>
       <div className="Gallery">
+        {console.log('number:', number)}
         {GenerateImages({number})}
       </div>
     </div>
