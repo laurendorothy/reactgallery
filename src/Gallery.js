@@ -16,12 +16,12 @@ function GenerateImages(imageNumber) {
 // }
 
 function Gallery() {
-  const [ number, setNumber ] = useState(6);
-  const { value, bind, reset } = useInput('');
+  const [ displayedAmount, setDisplayedAmount ] = useState(6);
+  const { value, bind} = useInput('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Submitting Name ${value}`);
+    setDisplayedAmount(value);
   }
 
   //https://reactjs.org/docs/forms.html
@@ -42,8 +42,7 @@ function Gallery() {
           <input type="submit" value="Submit" />
       </form>
       <div className="Gallery">
-        {console.log('number:', number)}
-        {GenerateImages(number)}
+        {GenerateImages(displayedAmount)}
       </div>
     </div>
   )
