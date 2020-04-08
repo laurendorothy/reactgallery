@@ -42,7 +42,7 @@ function Gallery(props) {
       </form>
       <div className="Gallery">
         {console.log('number:', number)}
-        {GenerateImages({number})}
+        {GenerateImages(number)}
       </div>
     </div>
   )
